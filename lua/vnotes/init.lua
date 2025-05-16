@@ -10,7 +10,7 @@ M.setup = function(opts)
 		core.create_note()
 	end, {})
 
-	vim.api.nvim_create_user_command("VNoteOpen", function()
+	vim.api.nvim_create_user_command("VNoteToggle", function()
 		core.open_note()
 	end, {})
 
