@@ -16,6 +16,7 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim)
 ```lua
   {
     "0xrinful/vnotes.nvim",
+    cmd = { "VNoteCreate", "VNoteToggle", "VNoteSelect" },
     opts = {}
   },
 
@@ -25,13 +26,13 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 After installing and configuring the plugin, you can use these commands in Neovim:
 
-- `:VnotesCreate`  
+- `:VNoteCreate`  
   Opens a prompt to create a new note. Enter the note name, and a floating window will open for you to edit the note.
 
-- `:VnotesOpen`  
+- `:VNoteToggle`  
   Opens the currently selected note in a floating window. If no note is selected, it will prompt you to select one.
 
-- `:VnotesSelect`  
+- `:VNoteSelect`  
   Opens a prompt to select an existing note from your notes directory to open it in a floating window.
 
 ## Configuration
