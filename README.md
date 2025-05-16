@@ -26,14 +26,24 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 After installing and configuring the plugin, you can use these commands in Neovim:
 
-- `:VNoteCreate`  
-  Opens a prompt to create a new note. Enter the note name, and a floating window will open for you to edit the note.
+- `:VNoteCreate`
+     Opens a prompt to create a new note. Enter the note name, and a floating window will open for you to edit the note.
+  
+  ![VNote Creaet](images/create.jpg)
 
-- `:VNoteToggle`  
-  Opens the currently selected note in a floating window. If no note is selected, it will prompt you to select one.
+
+- `:VNoteToggle`:
+     Toggle the currently selected note in a floating window. If no note is selected, it will prompt you to select one.
+
+  ![VNote Toggle](images/preview.jpg)
 
 - `:VNoteSelect`  
-  Opens a prompt to select an existing note from your notes directory to open it in a floating window.
+     Opens a prompt to select an existing note from your notes directory to open it in a floating window.
+
+  ![VNote Toggle](images/select.jpg)
+  
+> **Important Note:**  
+> To get the best UI experience, this plugin requires a UI-enhancing plugin that improves `vim.ui.input` and `vim.ui.select`, such as [Telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim) or [Noice](https://github.com/folke/noice.nvim).
 
 ## Configuration
 
@@ -50,3 +60,4 @@ require("vnotes").setup({
   title_pos = "center",                            -- Position of window title
   style = "minimal",                               -- Window style
 })
+```
