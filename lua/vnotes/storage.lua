@@ -4,24 +4,22 @@ local config = require("vnotes.config")
 local state = require("vnotes.state")
 
 local notes_dir = config.options.notes_dir
-local index_file = notes_dir .. "/index.json"
 
-M.load_index = function()
-	if state.cached_index then
-		return state.cached_index
+M.load_notes = function()
+	if state.notes then
+		return state.notes
 	end
 
-	local f = io.open(index_file, "r")
-	if not f then
-		state.cached_index = {}
-		return state.cached_index
+	local filenames = vim.fn.readdir(config.options.notes_dir)
+	local notes = {}
+	for _, name in ipairs(filenames) do
+		if name:match("%.md$") then
+			name = name:gsub("%.md$", "")
+			notes[name] = true
+		end
 	end
-
-	local content = f:read("*a")
-	f:close()
-
-	state.cached_index = vim.fn.json_decode(content) or {}
-	return state.cached_index
+	state.notes = notes
+	return state.notes
 end
 
 M.load_note_content = function(name)
@@ -36,15 +34,6 @@ M.load_note_content = function(name)
 
 	local lines = vim.split(content, "\n", { plain = true })
 	return lines
-end
-
-M.save_index = function(index)
-	vim.fn.mkdir(notes_dir, "p")
-	local f = io.open(index_file, "w")
-	f:write(vim.fn.json_encode(index))
-	f:close()
-
-	state.cached_index = index
 end
 
 M.save_note = function(name, lines)
@@ -66,19 +55,17 @@ M.save_note = function(name, lines)
 end
 
 M.create_note = function(name)
-	local index = M.load_index()
+	local notes = M.load_notes()
 	local path = notes_dir .. "/" .. name .. ".md"
-	index[name] = path
-	M.save_index(index)
+	notes[name] = path
 	return name
 end
 
 M.delete_note = function(name)
-	local index = M.load_index()
+	local notes = M.load_notes()
 	local path = notes_dir .. "/" .. name .. ".md"
 	os.remove(path)
-	index[name] = nil
-	M.save_index(index)
+	notes[name] = nil
 end
 
 return M

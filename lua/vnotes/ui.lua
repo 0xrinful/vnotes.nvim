@@ -87,8 +87,8 @@ M.create_note = function(callback)
 end
 
 M.select_note = function(callback)
-	local index = storage.load_index()
-	local notes = vim.tbl_keys(index)
+	local notes = storage.load_notes()
+	notes = vim.tbl_keys(notes)
 
 	if vim.tbl_isempty(notes) then
 		vim.notify("No notes found", vim.log.levels.INFO)

@@ -1,6 +1,6 @@
 local M = {
 	note_name = "",
-	index_cache = nil,
+	notes = nil,
 	buf = nil,
 	win = nil,
 }
