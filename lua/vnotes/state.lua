@@ -1,12 +1,12 @@
 local M = {
-  note_name = "",
-  index_cache = nil,
-  buf = nil,
-  win = nil,
+	note_name = "",
+	index_cache = nil,
+	buf = nil,
+	win = nil,
 }
 
 M.has_note = function()
-  return M.note_name ~= ""
+	return M.note_name ~= ""
 end
 
 return M
